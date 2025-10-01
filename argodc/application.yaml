@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-flask-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/seo-youngjae/sample-app.git"
+    targetRevision: HEAD
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: skala-practice
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

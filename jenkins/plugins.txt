@@ -1,0 +1,36 @@
+# === 기본 Jenkins 파이프라인 ===
+workflow-aggregator:latest
+pipeline-stage-view:latest
+blueocean:latest
+
+# === Git / SCM 연동 ===
+git:latest
+git-client:latest
+github:latest
+github-branch-source:latest
+ssh-slaves:latest
+
+# === Credentials / Secret 관리 ===
+credentials:latest
+credentials-binding:latest
+plain-credentials:latest
+
+# === Docker 빌드/배포 ===
+docker-commons:latest
+docker-workflow:latest
+docker-plugin:latest
+
+# === Kubernetes / ArgoCD 관련 ===
+kubernetes:latest
+kubernetes-cli:latest
+kubernetes-credentials:latest
+kubernetes-credentials-provider:latest
+
+# === Config as Code (자동 설정) ===
+configuration-as-code:latest
+configuration-as-code-support:latest
+
+# === Utility ===
+mailer:latest
+timestamper:latest
+ansicolor:latest
