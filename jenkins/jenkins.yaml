@@ -1,6 +1,7 @@
 jenkins:
   systemMessage: "Custom Jenkins - 자동 설정 완료"
   numExecutors: 2
+  mode: NORMAL
 
   securityRealm:
     local:
@@ -10,9 +11,46 @@ jenkins:
           password: "admin"
 
   authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:admin"
+        - "Overall/Read:authenticated"
+        - "View/Read:authenticated"
+        - "Job/Discover:authenticated"
+        - "Job/Read:authenticated"
+        - "Job/Build:authenticated"
+        - "Job/Configure:authenticated"
+        - "Job/Create:authenticated"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "skala-github-id"
+              description: "GitHub Account for sample-app repo"
+              username: "seo-youngjae"
+              password: ""   
+          - string:
+              scope: GLOBAL
+              id: "harbor-registry-url"
+              description: "Harbor Registry URL"
+              secret: "amdp-registry.skala-ai.com/skala25a"
+          - usernamePassword:
+              scope: GLOBAL
+              id: "skala-image-registry-id"
+              description: "Harbor Registry Credentials"
+              username: "robot$skala25a"
+              password: "1qB9cyusbNComZPHAdjNIFWinf52xaBJ"   
+          - file:
+              scope: GLOBAL
+              id: "kubeconfig-id"
+              description: "Kubernetes Kubeconfig"
+              fileName: "config"
+              secretBytes: "${readFileBase64:/var/jenkins_home/.kube/config}"
 
 unclassified:
   location:
-    url: http://localhost:8888/
+    url: "http://localhost:8888/"
+    adminAddress: "seo-youngjae@example.com"
