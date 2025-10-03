@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("https://${REGISTRY}", "${DOCKER_CREDENTIALS_ID}") {
-                        def appImage = docker.build("${REPO}:${FINAL_IMAGE_TAG}", "--platform=linux/amd64 .")
+                        def appImage = docker.build("${REPO}:${FINAL_IMAGE_TAG}", "-f app.Dockerfile .")
                         appImage.push()
                     }
                 }
