@@ -26,13 +26,13 @@ pipeline {
         timestamps()
     }
 
-    stages {
-        stage('Checkout') {
-          steps {
-            echo "=== SCM Checkout ==="
-            checkout scm
-          }
-        }
+    // stages {
+    //     stage('Checkout') {
+    //       steps {
+    //         echo "=== SCM Checkout ==="
+    //         checkout scm
+    //       }
+    //     }
 
         stage('Install & Test (Python)') {
             steps {
