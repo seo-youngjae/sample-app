@@ -59,14 +59,13 @@ pipeline {
             }
         }
 
-        stage('Image Build & Push') {
+        stage('Image Build & Push (docker)') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh """
-                    echo $DOCKER_PASS | docker login -u "$DOCKER_USER" --password-stdin ${REGISTRY}
-                    docker build -f app.Dockerfile -t ${IMAGE_REF} .
-                    docker push ${IMAGE_REF}
-                    """
+                script {
+                    docker.withRegistry("https://${REGISTRY}", "${DOCKER_CREDENTIALS_ID}") {
+                        def appImage = docker.build("${REPO}:${FINAL_IMAGE_TAG}", "--platform=linux/amd64 .")
+                        appImage.push()
+                    }
                 }
             }
         }
