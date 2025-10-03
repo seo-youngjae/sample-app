@@ -8,6 +8,7 @@ CPU_PLATFORM=${1:-amd64}
 # 컨테이너 실행 (도커 볼륨 사용)
 docker run -d \
   --name sample-jenkins \
+  -u root \
   -p 8888:8080 \
   -p 50000:50000 \
   -v jenkins_home_data:/var/jenkins_home \
