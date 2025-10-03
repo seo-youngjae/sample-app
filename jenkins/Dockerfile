@@ -49,6 +49,11 @@ ENV CASC_JENKINS_CONFIG=/var/jenkins_config/jenkins.yaml
 
 # 플러그인 설치
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+# RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+RUN jenkins-plugin-cli \
+    --plugin-download-directory /usr/share/jenkins/ref/plugins \
+    --plugin-file /usr/share/jenkins/ref/plugins.txt \
+    --latest \
+    --verbose
 
 EXPOSE 8080 50000

@@ -34,3 +34,8 @@ configuration-as-code-support:latest
 mailer:latest
 timestamper:latest
 ansicolor:latest
+
+# === Jenkins CasC + 권한 관리 + K8s 연동용 ===
+matrix-auth:latest
+configuration-as-code:latest
+kubernetes-credentials-provider:latest
