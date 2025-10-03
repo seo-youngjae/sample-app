@@ -40,8 +40,8 @@ pipeline {
                 echo "=== Install dependencies & run tests ==="
                 sh '''
                   set -eux
-                  pip install --upgrade pip
-                  pip install -r requirements.txt
+                  pip install --upgrade pip --break-system-packages
+                  pip install -r requirements.txt --break-system-packages
                   pytest || echo "⚠️ Tests skipped (no tests found or failed)"
                 '''
             }
