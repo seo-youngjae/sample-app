@@ -40,8 +40,6 @@ pipeline {
                 echo "=== Install dependencies & run tests ==="
                 sh '''
                   set -eux
-                  python3 -m venv venv
-                  . venv/bin/activate
                   pip install --upgrade pip
                   pip install -r requirements.txt
                   pytest || echo "⚠️ Tests skipped (no tests found or failed)"
