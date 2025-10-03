@@ -52,6 +52,7 @@ pipeline {
                 script {
                     def hashcode = sh(script: "date +%s%N | sha256sum | cut -c1-12", returnStdout: true).trim()
                     env.FINAL_IMAGE_TAG = "${IMAGE_TAG}-${hashcode}"
+                    env.REPO            = "${IMAGE_REGISTRY_URL}/${IMAGE_REGISTRY_PROJECT}/${IMAGE_NAME}"
                     env.IMAGE_REF       = "${REPO}:${FINAL_IMAGE_TAG}"
 
                     echo ">>> Using image: ${env.IMAGE_REF}"
