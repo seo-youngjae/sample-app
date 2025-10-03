@@ -28,10 +28,10 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                echo "=== Clone repository ==="
-                git branch: "${GIT_BRANCH}", url: "${GIT_URL}", credentialsId: "${GIT_ID}"
-            }
+          steps {
+            echo "=== SCM Checkout ==="
+            checkout scm
+          }
         }
 
         stage('Install & Test (Python)') {
